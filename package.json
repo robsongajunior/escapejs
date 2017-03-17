@@ -1,0 +1,13 @@
+{
+    "name": "escapejs",
+    "version": "0.0.1",
+    "description": "A recursive and dinamyc escape against XSS vulnerability",
+    "private": true,
+    "node_version": ">= 0.8.0",
+    "engine": "node >= 0.8.0",
+    "devDependencies": {},
+    "scripts": {
+        "postinstall": "",
+        "test": ""
+    }
+}
