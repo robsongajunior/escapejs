@@ -1,12 +1,13 @@
 {
+  
   "name": "escapejs",
-  "version": "1.0.0",
-  "description": "The reason to creating this module is to help us against Injection Script Attack(XSS) when your application receive a param and you will insert in you HTML page.",
-  "main": "index.js",
-  "directories": {
-    "test": "test"
-  },
+  "version": "0.0.1",
+  "description": "A recursive and dinamyc escape against XSS vulnerability",
+  "private": true,
+  "node_version": ">= 0.8.0",
+  "engine": "node >= 0.8.0",
   "scripts": {
+    "postinstall": "",
     "test": "mocha"
   },
   "repository": {
@@ -14,7 +15,6 @@
     "url": "git+https://github.com/renanbastos93/escapejs.git"
   },
   "author": "Renan Bastos, Robson Junior",
-  "license": "ISC",
   "bugs": {
     "url": "https://github.com/renanbastos93/escapejs/issues"
   },
