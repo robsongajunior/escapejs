@@ -7,7 +7,6 @@ const isArray = type.isArray;
     
 var API = {};
 
-
 API.str = function(param) {
     if(!param) {
         param = '';
@@ -91,22 +90,7 @@ API.array = function(param) {
 
 	}	
 
-	return JSON.stringify(param);
+	return param;
 };
 
-// TEST //
-
-var arr = ['<script>', ['asdasd', '<script>', ['<asdasd>', ['a', '<script>', {'a': '12', 'b': '<script>'}]]]]
-var obj = {
-	'a': '<script>',
-	'b': ['a', '<script>', {'a': 1, 'b': '<script>'}]
-};
-
-console.log('### API STR ###');
-console.log(API.str('<script>'));
-console.log('-------------------');
-console.log('### API ARRAY ###');
-console.log(API.array(arr));
-console.log('-------------------');
-console.log('### API JSON ###');
-console.log(API.json(obj));
+module.exports = API;
