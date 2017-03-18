@@ -21,7 +21,6 @@ API.str = function(param) {
     return param;
 };
 
-
 API.json = function(param) {
     if(!param) {
         param = {};
@@ -57,7 +56,6 @@ API.json = function(param) {
 
     return param;
 };
-
 
 API.array = function(param) {
 	if(!param) {
