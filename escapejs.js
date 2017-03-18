@@ -1,6 +1,9 @@
 'use strict';
 
 const type = require('./lib/validTypes');
+const isString = type.isString;
+const isObject = type.isObject;
+const isArray = type.isArray;
     
 var API = {};
 
@@ -47,7 +50,7 @@ API.json = function(param) {
 				API.array(tmp);
 			}
 
-			if(!isArr && typeof param === 'object') {
+			if(!isArr && typeof tmp === 'object') {
 				API.json(tmp);
 			}
 	  	}
@@ -88,22 +91,22 @@ API.array = function(param) {
 
 	}	
 
-	return param;
+	return JSON.stringify(param);
 };
 
 // TEST //
 
-var arr = ['<script>', ['asdasd', '<script>', ['<asdasd>']]]
+var arr = ['<script>', ['asdasd', '<script>', ['<asdasd>', ['a', '<script>', {'a': '12', 'b': '<script>'}]]]]
 var obj = {
 	'a': '<script>',
 	'b': ['a', '<script>', {'a': 1, 'b': '<script>'}]
 };
 
-console.log('### API STR ###');
-console.log(API.str('<script>'));
+// console.log('### API STR ###');
+// console.log(API.str('<script>'));
 
-// console.log('### API ARRAY ###');
-// console.log(API.array(arr));
+console.log('### API ARRAY ###');
+console.log(API.array(arr));
 
 // console.log('### API JSON ###');
 // console.log(API.json(obj));
