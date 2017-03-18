@@ -2,7 +2,15 @@
 
 const API = require('../escapejs');
 
-var arr = ['<script>', ['asdasd', '<script>', ['<asdasd>', ['a', '<script>', {'a': '12', 'b': '<script>'}]]]]
+var arr = 
+[
+	'<script>', 
+	['asdasd', '<script>', 
+		['<asdasd>', 
+			['a', '<script>', {'a': '12', 'b': '<script>'}]
+		]
+	]
+];
 var obj = {
 	'a': '<script>',
 	'b': ['a', '<script>', {'a': 1, 'b': '<script>'}]
