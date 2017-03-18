@@ -13,7 +13,7 @@ API.str = function(param) {
         param = '';
     }
 
-    if(type.isString(param) != true) {
+    if(!isString(param)) {
         throw new Error('[ERROR] param must be from string type');
     }
 
@@ -28,7 +28,7 @@ API.json = function(param) {
         param = {};
     }
 
-    if(type.isObject(param) != true) {
+    if(!isObject(param)) {
         throw new Error('[ERROR] param must be from object type');
     }
 	
@@ -40,9 +40,9 @@ API.json = function(param) {
 
 		// STRING
 	 	if (param.hasOwnProperty(attr)) {
-			isArr = Array.isArray(tmp);
+			isArr = isArray(tmp);
 			
-			if(typeof tmp === 'string') {
+			if(isString(tmp)) {
 				param[attr] = API.str(tmp);
 			}
 
@@ -50,7 +50,7 @@ API.json = function(param) {
 				API.array(tmp);
 			}
 
-			if(!isArr && typeof tmp === 'object') {
+			if(!isArr && isObject(tmp)) {
 				API.json(tmp);
 			}
 	  	}
@@ -65,7 +65,7 @@ API.array = function(param) {
 		param = [];	
 	}
 	
-	if(!Array.isArray(param)) {
+	if(!isArray(param)) {
         throw new Error('[ERROR] param must be from array type');
     }
 
@@ -75,9 +75,9 @@ API.array = function(param) {
 
 	for(var i = 0; i < countList; i++) {
 		tmp = param[i];
-		isArr = Array.isArray(tmp);
+		isArr = isArray(tmp);
 
-		if(typeof tmp === 'string') {
+		if(isString(tmp)) {
 			param[i] = API.str(tmp);
 		}
 
@@ -85,7 +85,7 @@ API.array = function(param) {
 			API.array(tmp);
 		}
 
-		if(tmp && !isArr && typeof tmp === 'object') {
+		if(tmp && !isArr && isObject(tmp)) {
 			API.json(tmp);
 		}
 
@@ -102,11 +102,11 @@ var obj = {
 	'b': ['a', '<script>', {'a': 1, 'b': '<script>'}]
 };
 
-// console.log('### API STR ###');
-// console.log(API.str('<script>'));
-
+console.log('### API STR ###');
+console.log(API.str('<script>'));
+console.log('-------------------');
 console.log('### API ARRAY ###');
 console.log(API.array(arr));
-
-// console.log('### API JSON ###');
-// console.log(API.json(obj));
+console.log('-------------------');
+console.log('### API JSON ###');
+console.log(API.json(obj));
