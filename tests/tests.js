@@ -1,26 +1,36 @@
 'use strict';
 
+var assert = require('assert');
 const API = require('../escapejs');
 
-var arr = 
-[
-	'<script>', 
-	['asdasd', '<script>', 
-		['<asdasd>', 
-			['a', '<script>', {'a': '12', 'b': '<script>'}]
-		]
-	]
-];
-var obj = {
-	'a': '<script>',
-	'b': ['a', '<script>', {'a': 1, 'b': '<script>'}]
-};
+describe('Testing of the recursive escape', function(){
 
-console.log('### API STR ###');
-console.log(API.str('<script>'));
-console.log('-------------------');
-console.log('### API ARRAY ###');
-console.log(JSON.stringify(API.array(arr)));
-console.log('-------------------');
-console.log('### API JSON ###');
-console.log(API.json(obj));
+	it('send <string> must return <string>', function(){
+		let str = API.str('<string>');
+		assert.equal(str, API.str('<string>'));
+	});
+
+	it('send json must return json', function(){
+		let obj = {
+			'a': '<script>',
+			'b': ['a', '<script>', {'a': 1, 'b': '<script>'}]
+		};
+		let json = API.json(obj);
+		assert.equal(json, API.json(obj));
+	});
+
+	it('send array must return array', function(){
+		let arr = 
+		[
+			'<script>', 
+			['asdasd', '<script>', 
+				['<asdasd>', 
+					['a', '<script>', {'a': '12', 'b': '<script>'}]
+				]
+			]
+		];
+		let array = API.array(arr);
+		assert.equal(array, API.json(arr));
+	});
+	
+});

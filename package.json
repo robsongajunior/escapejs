@@ -1,19 +1,19 @@
 {
-  
   "name": "escapejs",
   "version": "0.0.1",
   "description": "A recursive and dinamyc escape against XSS vulnerability",
   "private": true,
   "node_version": ">= 0.8.0",
   "engine": "node >= 0.8.0",
+  "main": "escapejs.js",
   "scripts": {
     "postinstall": "",
-    "test": "mocha"
+    "test": "mocha ./tests/tests.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/renanbastos93/escapejs.git"
-  },
+  } ,
   "author": "Renan Bastos, Robson Junior",
   "bugs": {
     "url": "https://github.com/renanbastos93/escapejs/issues"
