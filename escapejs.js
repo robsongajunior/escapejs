@@ -32,7 +32,7 @@ API.json = function(param) {
 	
 	var tmp;
 
-	for(var attr in param) {
+	for(let attr in param) {
 		tmp = param[attr];
 		var isArr = false;
 
@@ -70,7 +70,7 @@ API.array = function(param) {
 	var tmp;
 	var isArr = false;
 
-	for(var i = 0; i < countList; i++) {
+	for(let i = 0; i < countList; i++) {
 		tmp = param[i];
 		isArr = isArray(tmp);
 
