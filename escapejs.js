@@ -4,91 +4,93 @@ const type = require('./lib/validTypes');
 const isString = type.isString;
 const isObject = type.isObject;
 const isArray = type.isArray;
-    
-var API = {};
 
-API.str = function(param) {
-    if(!param) {
-        param = '';
-    }
+class EscapeJS {
+	constructor(){
+		this.str();
+		this.json();
+		this.array();
+	}
+	str(param){
+		if(!param) {
+			param = '';
+		}
 
-    if(!isString(param)) {
-        throw new Error('[ERROR] param must be from string type');
-    }
+		if(!isString(param)) {
+			throw new Error('[ERROR] param must be from string type');
+		}
 
-    param = escape(param);
+		param = escape(param);
 
-    return param;
-};
+		return param;
+	}
+	json(param){
+		if(!param) {
+			param = {};
+		}
 
-API.json = function(param) {
-    if(!param) {
-        param = {};
-    }
+		if(!isObject(param)) {
+			throw new Error('[ERROR] param must be from object type');
+		}
 
-    if(!isObject(param)) {
-        throw new Error('[ERROR] param must be from object type');
-    }
-	
-	var tmp;
+		var tmp;
 
-	for(var attr in param) {
-		tmp = param[attr];
+		for(var attr in param) {
+			tmp = param[attr];
+			var isArr = false;
+			
+			if (param.hasOwnProperty(attr)) {
+				isArr = isArray(tmp);
+
+				if(isString(tmp)) {
+					param[attr] = API.str(tmp);
+				}
+
+				if(isArr) {
+					API.array(tmp);
+				}
+
+				if(!isArr && isObject(tmp)) {
+					API.json(tmp);
+				}
+			}
+		}
+
+		return param;
+	}
+	array(param){
+		if(!param) {
+			param = [];	
+		}
+
+		if(!isArray(param)) {
+			throw new Error('[ERROR] param must be from array type');
+		}
+
+		var countList = param.length;
+		var tmp;
 		var isArr = false;
 
-		// STRING
-	 	if (param.hasOwnProperty(attr)) {
+		for(var i = 0; i < countList; i++) {
+			tmp = param[i];
 			isArr = isArray(tmp);
-			
+
 			if(isString(tmp)) {
-				param[attr] = API.str(tmp);
+				param[i] = API.str(tmp);
 			}
 
 			if(isArr) {
 				API.array(tmp);
 			}
 
-			if(!isArr && isObject(tmp)) {
+			if(tmp && !isArr && isObject(tmp)) {
 				API.json(tmp);
 			}
-	  	}
+
+		}	
+
+		return param;
 	}
+}
 
-    return param;
-};
-
-API.array = function(param) {
-	if(!param) {
-		param = [];	
-	}
-	
-	if(!isArray(param)) {
-        throw new Error('[ERROR] param must be from array type');
-    }
-
-	var countList = param.length;
-	var tmp;
-	var isArr = false;
-
-	for(var i = 0; i < countList; i++) {
-		tmp = param[i];
-		isArr = isArray(tmp);
-
-		if(isString(tmp)) {
-			param[i] = API.str(tmp);
-		}
-
-		if(isArr) {
-			API.array(tmp);
-		}
-
-		if(tmp && !isArr && isObject(tmp)) {
-			API.json(tmp);
-		}
-
-	}	
-
-	return param;
-};
-
-module.exports = API;
+module.exports = EscapeJS;
