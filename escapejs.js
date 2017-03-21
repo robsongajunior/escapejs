@@ -1,13 +1,10 @@
 'use strict';
 
 const validTypes = require('./lib/validTypes');
-const type = new validTypes();
-const isString = type.isString;
-const isObject = type.isObject;
-const isArray = type.isArray;
 
-class EscapeJS {
+class EscapeJS extends validTypes{
 	constructor(){
+		super()
 		this.str();
 		this.json();
 		this.array();
@@ -17,7 +14,7 @@ class EscapeJS {
 			param = '';
 		}
 
-		if(!isString(param)) {
+		if(!this.isString(param)) {
 			throw new Error('[ERROR] param must be from string type');
 		}
 
@@ -30,7 +27,7 @@ class EscapeJS {
 			param = {};
 		}
 
-		if(!isObject(param)) {
+		if(!this.isObject(param)) {
 			throw new Error('[ERROR] param must be from object type');
 		}
 
@@ -41,9 +38,9 @@ class EscapeJS {
 			var isArr = false;
 			
 			if (param.hasOwnProperty(attr)) {
-				isArr = isArray(tmp);
+				isArr = this.isArray(tmp);
 
-				if(isString(tmp)) {
+				if(this.isString(tmp)) {
 					param[attr] = this.str(tmp);
 				}
 
@@ -51,7 +48,7 @@ class EscapeJS {
 					this.array(tmp);
 				}
 
-				if(!isArr && isObject(tmp)) {
+				if(!isArr && this.isObject(tmp)) {
 					this.json(tmp);
 				}
 			}
@@ -64,7 +61,7 @@ class EscapeJS {
 			param = [];	
 		}
 
-		if(!isArray(param)) {
+		if(!this.isArray(param)) {
 			throw new Error('[ERROR] param must be from array type');
 		}
 
@@ -74,9 +71,9 @@ class EscapeJS {
 
 		for(var i = 0; i < countList; i++) {
 			tmp = param[i];
-			isArr = isArray(tmp);
+			isArr = this.isArray(tmp);
 
-			if(isString(tmp)) {
+			if(this.isString(tmp)) {
 				param[i] = this.str(tmp);
 			}
 
@@ -84,7 +81,7 @@ class EscapeJS {
 				this.array(tmp);
 			}
 
-			if(tmp && !isArr && isObject(tmp)) {
+			if(tmp && !isArr && this.isObject(tmp)) {
 				this.json(tmp);
 			}
 
@@ -95,11 +92,3 @@ class EscapeJS {
 }
 
 module.exports = EscapeJS;
-
-var a = new EscapeJS();
-var b = a.array(['</script>','</script>',{a: '</script>', b: '</script>'}]);
-var c = a.json({a: '</script>', b: '</script>'});
-var d = a.str('</strin?>')
-console.log(b);
-console.log(c);
-console.log(d);
