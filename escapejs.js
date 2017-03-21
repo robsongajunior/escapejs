@@ -1,6 +1,7 @@
 'use strict';
 
-const type = require('./lib/validTypes');
+const validTypes = require('./lib/validTypes');
+const type = new validTypes();
 const isString = type.isString;
 const isObject = type.isObject;
 const isArray = type.isArray;
@@ -43,15 +44,15 @@ class EscapeJS {
 				isArr = isArray(tmp);
 
 				if(isString(tmp)) {
-					param[attr] = API.str(tmp);
+					param[attr] = this.str(tmp);
 				}
 
 				if(isArr) {
-					API.array(tmp);
+					this.array(tmp);
 				}
 
 				if(!isArr && isObject(tmp)) {
-					API.json(tmp);
+					this.json(tmp);
 				}
 			}
 		}
@@ -76,15 +77,15 @@ class EscapeJS {
 			isArr = isArray(tmp);
 
 			if(isString(tmp)) {
-				param[i] = API.str(tmp);
+				param[i] = this.str(tmp);
 			}
 
 			if(isArr) {
-				API.array(tmp);
+				this.array(tmp);
 			}
 
 			if(tmp && !isArr && isObject(tmp)) {
-				API.json(tmp);
+				this.json(tmp);
 			}
 
 		}	
@@ -94,3 +95,11 @@ class EscapeJS {
 }
 
 module.exports = EscapeJS;
+
+var a = new EscapeJS();
+var b = a.array(['</script>','</script>',{a: '</script>', b: '</script>'}]);
+var c = a.json({a: '</script>', b: '</script>'});
+var d = a.str('</strin?>')
+console.log(b);
+console.log(c);
+console.log(d);
