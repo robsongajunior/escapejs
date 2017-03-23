@@ -8,6 +8,7 @@ class EscapeJS extends validTypes{
 		this.str();
 		this.json();
 		this.array();
+		this.escape();
 	}
 	str(param){
 		if(!param) {
@@ -88,6 +89,22 @@ class EscapeJS extends validTypes{
 		}	
 
 		return param;
+	}
+	escape(param = ''){
+		if(!param){
+			throw new Error('[ERROR] param has no type');
+		}
+		var tmp = param;
+		if(this.isString(tmp)){
+			param = this.str(tmp)
+		}
+		if(this.isObject(tmp)){
+			param = this.json(tmp);
+		}
+		if(this.isArray(tmp)){
+			param = this.array(tmp);
+		}
+		return param
 	}
 }
 
