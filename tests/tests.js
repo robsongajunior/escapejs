@@ -6,23 +6,21 @@ const API = require('../escapejs');
 
 describe('Testing of the recursive escape', function(){
 
-	it('send <string> must return <string>', function(){
-		let str = API.str('<string>');
-		assert.equal(str, API.str('<string>'));
+	it('send string must return string', function(){
+		assert.equal(API.str('<string>'), API.str('<string>'), 'Testing String');
 	});
 
 	it('send json must return json', function(){
-		let obj = {
+		var obj = {
 			'a': '<script>',
 			'b': ['a', '<script>', {'a': 1, 'b': '<script>'}]
 		};
-		let json = API.json(obj);
-		
-        assert.equal(json, API.json(obj));
+		var json = API.json(obj);
+		assert.equal(json, API.json(obj), 'Testing JSON');
 	});
     
 	it('send array must return array', function(){
-		let arr = [
+		var arr = [
 			'<script>', 
 			['asdasd', '<script>', 
 				['<asdasd>', 
@@ -30,7 +28,7 @@ describe('Testing of the recursive escape', function(){
 				]
 			]
 		];
-		let array = API.array(arr);
-		assert.equal(array, API.array(arr));
+		var array = API.array(arr);
+		assert.equal(array, API.array(arr), 'Testing Array');
 	});
 });

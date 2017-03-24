@@ -1,16 +1,13 @@
 'use strict';
 
-
 const type = require('./lib/typeValidation.js');
 const isString = type.isString;
 const isObject = type.isObject;
-const isArray = type.isArray;
-    
+const isArray = type.isArray; 
 
-var API = {};
+var EscapeJS = {};
 
-
-API.str = function(param) {
+EscapeJS.str = function(param) {
     if(!param) {
         param = '';
     }
@@ -22,8 +19,7 @@ API.str = function(param) {
     return escape(param);
 };
 
-
-API.json = function(param) {
+EscapeJS.json = function(param) {
     if(!param) {
         param = {};
     }
@@ -35,7 +31,7 @@ API.json = function(param) {
 	var tmp;
     var isArr;
 
-	for(let attr in param) {
+	for(var attr in param) {
 		tmp = param[attr];
 		isArr = false;
 
@@ -44,15 +40,15 @@ API.json = function(param) {
 			isArr = isArray(tmp);
 			
 			if(isString(tmp)) {
-				param[attr] = API.str(tmp);
+				param[attr] = EscapeJS.str(tmp);
 			}
 
 			if(isArr) {
-				API.array(tmp);
+				EscapeJS.array(tmp);
 			}
 
 			if(!isArr && isObject(tmp)) {
-				API.json(tmp);
+				EscapeJS.json(tmp);
 			}
 	  	}
 	}
@@ -60,8 +56,7 @@ API.json = function(param) {
     return param;
 };
 
-
-API.array = function(param) {
+EscapeJS.array = function(param) {
 	if(!param) {
 		param = [];	
 	}
@@ -74,20 +69,20 @@ API.array = function(param) {
 	var countList = param.length;
 	var isArr = false;
 
-	for(let i = 0; i < countList; i++) {
+	for(var i = 0; i < countList; i++) {
 		tmp = param[i];
 		isArr = isArray(tmp);
 
 		if(isString(tmp)) {
-			param[i] = API.str(tmp);
+			param[i] = EscapeJS.str(tmp);
 		}
 
 		if(isArr) {
-			API.array(tmp);
+			EscapeJS.array(tmp);
 		}
 
 		if(tmp && !isArr && isObject(tmp)) {
-			API.json(tmp);
+			EscapeJS.json(tmp);
 		}
 
 	}	
@@ -95,5 +90,21 @@ API.array = function(param) {
 	return param;
 };
 
+EscapeJS.escape = function(param){
+	if(!param){
+		throw new Error('[ERROR] param has no type');
+	}
+	var tmp = param;
+	if(isString(tmp)){
+		param = EscapeJS.str(tmp)
+	}
+	if(isArray(tmp)){
+		EscapeJS.array(tmp)
+	}
+	if(isObject(tmp)){
+		EscapeJS.json(tmp);
+	}
+	return param;
+};
 
-module.exports = API;
+module.exports = EscapeJS;
