@@ -1,7 +1,11 @@
-# EscapeJS / under development
+# EscapeJS Recursive / under development
 
 ## About
 The reason to development this it module, is to help protection of the Injection Script Attack([XSS](https://www.owasp.org/index.php/Top_10_2010-A2-Cross-Site_Scripting_(XSS))) When trying injection your application, this module go protect of form recursive.
+
+### Docs
+1. [English](https://github.com/renanbastos93/escapejs#English)
+2. [Português](https://github.com/renanbastos93/escapejs#Portuguese)
 
 ## Getting Start
 ```js
@@ -15,4 +19,7 @@ escapejs.json({ 'a': '<script/>', 'b': '<script/>'});
 
 //Return ['%3Cscript/%3E','%3Cscript/%3E', [{ 'a': '%3Cscript/%3E', 'b': '%3Cscript/%3E'}]]
 escapejs.array(['<script/>','<script/>', [{ 'a': '<script/>', 'b': '<script/>'}]]);
+
+//Return the escape independent of the parameter
+escapejs.escape(param);
 ```
