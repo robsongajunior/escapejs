@@ -8,35 +8,35 @@ const isArray = type.isArray;
 var EscapeJS = {};
 
 EscapeJS.str = function(param) {
-    if(!param) {
-        param = '';
-    }
+	if(!param) {
+		param = '';
+	}
 
-    if(!isString(param)) {
-        throw new Error('[ERROR] param must be from string type');
-    }
+	if(!isString(param)) {
+		throw new Error('[ERROR] param must be from string type');
+	}
 
-    return escape(param);
+	return escape(param);
 };
 
 EscapeJS.json = function(param) {
-    if(!param) {
-        param = {};
-    }
+	if(!param) {
+		param = {};
+	}
 
-    if(!isObject(param)) {
-        throw new Error('[ERROR] param must be from object type');
-    }
+	if(!isObject(param)) {
+		throw new Error('[ERROR] param must be from object type');
+	}
 	
 	var tmp;
-    var isArr;
+	var isArr;
 
 	for(var attr in param) {
 		tmp = param[attr];
 		isArr = false;
 
 		// STRING
-	 	if (param.hasOwnProperty(attr)) {
+		if (param.hasOwnProperty(attr)) {
 			isArr = isArray(tmp);
 			
 			if(isString(tmp)) {
@@ -50,10 +50,10 @@ EscapeJS.json = function(param) {
 			if(!isArr && isObject(tmp)) {
 				EscapeJS.json(tmp);
 			}
-	  	}
+		}
 	}
 
-    return param;
+	return param;
 };
 
 EscapeJS.array = function(param) {
@@ -62,10 +62,10 @@ EscapeJS.array = function(param) {
 	}
 	
 	if(!isArray(param)) {
-        throw new Error('[ERROR] param must be from array type');
-    }
-    
-    var tmp;
+		throw new Error('[ERROR] param must be from array type');
+	}
+
+	var tmp;
 	var countList = param.length;
 	var isArr = false;
 
