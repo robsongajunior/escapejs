@@ -1,11 +1,14 @@
 'use strict';
 
-const type = require('./lib/validTypes');
+
+const type = require('./lib/typeValidation.js');
 const isString = type.isString;
 const isObject = type.isObject;
 const isArray = type.isArray;
     
+
 var API = {};
+
 
 API.str = function(param) {
     if(!param) {
@@ -16,10 +19,9 @@ API.str = function(param) {
         throw new Error('[ERROR] param must be from string type');
     }
 
-    param = escape(param);
-
-    return param;
+    return escape(param);
 };
+
 
 API.json = function(param) {
     if(!param) {
@@ -31,10 +33,11 @@ API.json = function(param) {
     }
 	
 	var tmp;
+    var isArr;
 
 	for(let attr in param) {
 		tmp = param[attr];
-		var isArr = false;
+		isArr = false;
 
 		// STRING
 	 	if (param.hasOwnProperty(attr)) {
@@ -57,6 +60,7 @@ API.json = function(param) {
     return param;
 };
 
+
 API.array = function(param) {
 	if(!param) {
 		param = [];	
@@ -65,9 +69,9 @@ API.array = function(param) {
 	if(!isArray(param)) {
         throw new Error('[ERROR] param must be from array type');
     }
-
+    
+    var tmp;
 	var countList = param.length;
-	var tmp;
 	var isArr = false;
 
 	for(let i = 0; i < countList; i++) {
@@ -90,5 +94,6 @@ API.array = function(param) {
 
 	return param;
 };
+
 
 module.exports = API;
