@@ -1,13 +1,14 @@
 'use strict';
 
+var escapeJS = {};
+
 const type = require('./lib/typeValidation.js');
 const isString = type.isString;
 const isObject = type.isObject;
 const isArray = type.isArray; 
 
-var EscapeJS = {};
 
-EscapeJS.str = function(param) {
+escapeJS.str = function(param) {
 	if(!param) {
 		param = '';
 	}
@@ -19,7 +20,8 @@ EscapeJS.str = function(param) {
 	return escape(param);
 };
 
-EscapeJS.json = function(param) {
+
+escapeJS.json = function(param) {
 	if(!param) {
 		param = {};
 	}
@@ -35,20 +37,19 @@ EscapeJS.json = function(param) {
 		tmp = param[attr];
 		isArr = false;
 
-		// STRING
 		if (param.hasOwnProperty(attr)) {
 			isArr = isArray(tmp);
 			
 			if(isString(tmp)) {
-				param[attr] = EscapeJS.str(tmp);
+				param[attr] = escapeJS.str(tmp);
 			}
 
 			if(isArr) {
-				EscapeJS.array(tmp);
+				escapeJS.array(tmp);
 			}
 
 			if(!isArr && isObject(tmp)) {
-				EscapeJS.json(tmp);
+				escapeJS.json(tmp);
 			}
 		}
 	}
@@ -56,7 +57,8 @@ EscapeJS.json = function(param) {
 	return param;
 };
 
-EscapeJS.array = function(param) {
+
+escapeJS.array = function(param) {
 	if(!param) {
 		param = [];	
 	}
@@ -74,36 +76,43 @@ EscapeJS.array = function(param) {
 		isArr = isArray(tmp);
 
 		if(isString(tmp)) {
-			param[i] = EscapeJS.str(tmp);
+			param[i] = escapeJS.str(tmp);
 		}
 
 		if(tmp && isArr) {
-			EscapeJS.array(tmp);
+			escapeJS.array(tmp);
 		}
 
 		if(tmp && !isArr && isObject(tmp)) {
-			EscapeJS.json(tmp);
+		    escapeJS.json(tmp);
 		}
 	}	
 
 	return param;
 };
 
-EscapeJS.escape = function(param){
+
+escapeJS.escape = function(param){
 	if(!param){
 		throw new Error('[ERROR] param has no type');
 	}
-	var tmp = param;
-	if(isString(tmp)){
-		param = EscapeJS.str(tmp)
+	
+    var tmp = param;
+	
+    if(isString(tmp)){
+		param = escapeJS.str(tmp)
 	}
-	if(isArray(tmp)){
-		EscapeJS.array(tmp)
+	
+    if(isArray(tmp)){
+		escapeJS.array(tmp)
 	}
-	if(isObject(tmp)){
-		EscapeJS.json(tmp);
+	
+    if(isObject(tmp)){
+		escapeJS.json(tmp);
 	}
-	return param;
+	
+    return param;
 };
 
-module.exports = EscapeJS;
+
+module.exports = escapeJS;
