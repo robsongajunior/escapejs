@@ -7,7 +7,9 @@ const API = require('../escapejs');
 describe('Testing of the recursive escape', function(){
 
 	it('send string must return string', function(){
-		assert.equal(API.str('<string>'), API.str('<string>'), 'Testing String');
+		var str = "<string>";
+		var resStr = "%3Cstring%3E";
+		assert.equal(resStr, API.str(str), 'Testing String');
 	});
 
 	it('send json must return json', function(){

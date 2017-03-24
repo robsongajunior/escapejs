@@ -77,14 +77,13 @@ EscapeJS.array = function(param) {
 			param[i] = EscapeJS.str(tmp);
 		}
 
-		if(isArr) {
+		if(tmp && isArr) {
 			EscapeJS.array(tmp);
 		}
 
 		if(tmp && !isArr && isObject(tmp)) {
 			EscapeJS.json(tmp);
 		}
-
 	}	
 
 	return param;
