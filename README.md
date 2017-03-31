@@ -7,19 +7,26 @@ The reason to development this it module, is to help protection of the Injection
 1. [English](https://github.com/renanbastos93/escapejs#English)
 2. [Português](https://github.com/renanbastos93/escapejs#Portuguese)
 
+## Install
+```bash
+$ npm i -S https://github.com/renanbastos93/escapejs.git
+```
+
 ## Getting Start
 ```js
+//IMPORT
 const escapejs = require('escapejs');
 
-//Return %3Cscript/%3E
-escapejs.str('<script/>');
-
-//Return { 'a': '%3Cscript/%3E', 'b': '%3Cscript/%3E'}
-escapejs.json({ 'a': '<script/>', 'b': '<script/>'}); 
-
-//Return ['%3Cscript/%3E','%3Cscript/%3E', [{ 'a': '%3Cscript/%3E', 'b': '%3Cscript/%3E'}]]
-escapejs.array(['<script/>','<script/>', [{ 'a': '<script/>', 'b': '<script/>'}]]);
-
-//Return the escape independent of the parameter
-escapejs.escape(param);
+//USING
+escapejs('<script>'); // %3Cscript%3E
 ```
+
+## API
+
+Method | Param Type | Returns | Raises
+-------|------------|---------|-------
+str_escape | string or unicode | Return the received string or unicode and modified with escaped strings case found | Raise ValueError case param isn't from string or unicode type
+list_escape | list | Return the received list modified with escaped strings case found | Raise ValueError case param isn't from list type
+dict_escape | dict or json | Return the received dict modified with escaped strings case found | Raise ValueError case param isn't from dic type
+ecape | unicode, string, list, dict, json | Return the received data escaped | Raise ValueError case param isn't from string, unicode, json, dict or list type
+
