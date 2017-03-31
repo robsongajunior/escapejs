@@ -114,5 +114,4 @@ escapeJS.escape = function(param){
     return param;
 };
 
-
-module.exports = escapeJS;
+module.exports = escapeJS.escape;
