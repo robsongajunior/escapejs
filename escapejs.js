@@ -2,7 +2,8 @@
 
 var escapeJS = {};
 
-const type = require('./lib/typeValidation.js');
+const type = require('./lib/typeValidation');
+const version = require('./lib/versions');
 const isString = type.isString;
 const isObject = type.isObject;
 const isArray = type.isArray; 
@@ -114,4 +115,4 @@ escapeJS.escape = function(param){
     return param;
 };
 
-module.exports = escapeJS.escape;
+module.exports = version(escapeJS);
