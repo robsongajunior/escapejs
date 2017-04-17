@@ -17,8 +17,8 @@ $ npm i -S https://github.com/renanbastos93/escapejs.git
 //IMPORT ES5
 const escapejs = require('escapejs');
 
-//IMPORT ES6
-CONST {escape} = require('escapejs');
+//IMPORT ES6 - Using Destructuring Assignment
+const {escap} = require('escapejs');
 
 //USING
 escapejs('<script>'); // %3Cscript%3E

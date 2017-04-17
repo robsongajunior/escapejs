@@ -93,7 +93,7 @@ escapeJS.array = function(param) {
 };
 
 
-escapeJS.escape = function(param){
+escapeJS.escap = function(param){
 	if(!param){
 		throw new Error('[ERROR] param has no type');
 	}
