@@ -14,8 +14,11 @@ $ npm i -S https://github.com/renanbastos93/escapejs.git
 
 ## Getting Start
 ```js
-//IMPORT
+//IMPORT ES5
 const escapejs = require('escapejs');
+
+//IMPORT ES6
+CONST {escape} = require('escapejs');
 
 //USING
 escapejs('<script>'); // %3Cscript%3E
