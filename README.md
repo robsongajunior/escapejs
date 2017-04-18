@@ -18,18 +18,22 @@ $ npm i -S https://github.com/renanbastos93/escapejs.git
 const escapejs = require('escapejs');
 
 //IMPORT ES6 - Using Destructuring Assignment
-const {escap} = require('escapejs');
+const {escapejs, str} = require('escapejs');
 
-//USING
+//USING ES5
+escapejs('<script>'); // %3Cscript%3E'
+
+//USING ES6
 escapejs('<script>'); // %3Cscript%3E
+str('<script>'); // %3Cscript%3E
 ```
 
 ## API
 
 Method | Param Type | Returns | Raises
 -------|------------|---------|-------
-str_escape | string or unicode | Return the received string or unicode and modified with escaped strings case found | Raise ValueError case param isn't from string or unicode type
-list_escape | list | Return the received list modified with escaped strings case found | Raise ValueError case param isn't from list type
-dict_escape | dict or json | Return the received dict modified with escaped strings case found | Raise ValueError case param isn't from dic type
-ecape | unicode, string, list, dict, json | Return the received data escaped | Raise ValueError case param isn't from string, unicode, json, dict or list type
+str | string or unicode | Return the received string or unicode and modified with escaped strings case found | Raise ValueError case param isn't from string or unicode type
+array | list | Return the received list modified with escaped strings case found | Raise ValueError case param isn't from list type
+json | dict or json | Return the received dict modified with escaped strings case found | Raise ValueError case param isn't from dic type
+escapejs | unicode, string, list, dict, json | Return the received data escaped | Raise ValueError case param isn't from string, unicode, json, dict or list type
 
