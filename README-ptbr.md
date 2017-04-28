@@ -3,9 +3,9 @@
 ## About
 A reação do desenvolvimento deste modulo, é para ajudar na proteção contra Injeção de Script Ataque o famoso ([XSS](https://www.owasp.org/index.php/Top_10_2010-A2-Cross-Site_Scripting_(XSS))) quando tentarem injetarem sua aplicação, este modulo vai proteger de forma recursiva.
 
-### Docs
-1. [English](https://github.com/renanbastos93/escapejs#README)
-2. [Português](https://github.com/renanbastos93/escapejs#README-ptbr)
+### Documentação
+1. [English](https://github.com/renanbastos93/escapejs/blob/master/README.md)
+2. [Português](https://github.com/renanbastos93/escapejs/blob/master/README-ptbr.md)
 
 ## Installar
 ```bash
@@ -32,8 +32,8 @@ str('<script>'); // %3Cscript%3E
 
 Metódos | Tipos de Parametros | Retornos | Levantar
 -------|------------|---------|-------
-str | string ou unicode | Retorna a seqüência de caracteres recebido ou unicode e modificado com caso de seqüências de escape encontrado | Levantar ValueError case param isn't from string or unicode type
-array | lista | Retorna a lista recebida modificada com escape de seqüências de caracteres caso encontrado | Levantar ValorError caso param não é de tipo lista
-json | dicionário/ JSON | Retorna o dict recebido modificado com caso de seqüências de escape encontradas | Levantar ValorError caso param não é do tipo dicionáro/JSON
-escapejs | unicode, string, lista, dicionário, json | Retornar os dados recebidos escapados | Levantar valorError caso param não é de string, unicode, json, dict ou tipo de lista
+str | string ou unicode | Retorna a seqüência de caracteres recebido ou unicode e modificado com caso de seqüências de escape encontrado | Levantar erro case param isn't from string or unicode type
+array | lista | Retorna a lista recebida modificada com escape de seqüências de caracteres caso encontrado | Levantar erro caso param não é de tipo lista
+json | dicionário/ JSON | Retorna o dict recebido modificado com caso de seqüências de escape encontradas | Levantar erro caso param não é do tipo dicionáro/JSON
+escapejs | unicode, string, lista, dicionário, json | Retornar os dados recebidos escapados | Levantar erro caso param não é de string, unicode, json, dict ou tipo de lista
 

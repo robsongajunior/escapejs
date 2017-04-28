@@ -4,8 +4,8 @@
 The reason to development this it module, is to help protection of the Injection Script Attack([XSS](https://www.owasp.org/index.php/Top_10_2010-A2-Cross-Site_Scripting_(XSS))) When trying injection your application, this module go protect of form recursive.
 
 ### Docs
-1. [English](https://github.com/renanbastos93/escapejs#English)
-2. [Português](https://github.com/renanbastos93/escapejs#Portuguese)
+1. [English](https://github.com/renanbastos93/escapejs/blob/master/README.md)
+2. [Português](https://github.com/renanbastos93/escapejs/blob/master/README-ptbr.md)
 
 ## Install
 ```bash
