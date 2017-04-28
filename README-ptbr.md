@@ -1,7 +1,7 @@
 # EscapeJS Recursivo / em desenvolvimento
 
 ## About
-A ração do desenvolvimento deste modulo, é para ajudar na proteção contra Injeção de Script Ataque o famoso ([XSS](https://www.owasp.org/index.php/Top_10_2010-A2-Cross-Site_Scripting_(XSS))) quando tentarem injetarem sua aplicação, este modulo vai proteger de forma recursiva.
+A reação do desenvolvimento deste modulo, é para ajudar na proteção contra Injeção de Script Ataque o famoso ([XSS](https://www.owasp.org/index.php/Top_10_2010-A2-Cross-Site_Scripting_(XSS))) quando tentarem injetarem sua aplicação, este modulo vai proteger de forma recursiva.
 
 ### Docs
 1. [English](https://github.com/renanbastos93/escapejs#README)
