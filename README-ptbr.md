@@ -30,10 +30,10 @@ str('<script>'); // %3Cscript%3E
 
 ## API
 
-Metódos | Tipos de Parametros | Retornos | Raises
+Metódos | Tipos de Parametros | Retornos | Levantar
 -------|------------|---------|-------
-str | string ou unicode | Retorna a seqüência de caracteres recebido ou unicode e modificado com caso de seqüências de escape encontrado | Raise ValueError case param isn't from string or unicode type
-array | list | Return the received list modified with escaped strings case found | Raise ValueError case param isn't from list type
-json | dict or json | Return the received dict modified with escaped strings case found | Raise ValueError case param isn't from dic type
-escapejs | unicode, string, list, dict, json | Return the received data escaped | Raise ValueError case param isn't from string, unicode, json, dict or list type
+str | string ou unicode | Retorna a seqüência de caracteres recebido ou unicode e modificado com caso de seqüências de escape encontrado | Levantar ValueError case param isn't from string or unicode type
+array | lista | Retorna a lista recebida modificada com escape de seqüências de caracteres caso encontrado | Levantar ValorError caso param não é de tipo lista
+json | dicionário/ JSON | Retorna o dict recebido modificado com caso de seqüências de escape encontradas | Levantar ValorError caso param não é do tipo dicionáro/JSON
+escapejs | unicode, string, lista, dicionário, json | Retornar os dados recebidos escapados | Levantar valorError caso param não é de string, unicode, json, dict ou tipo de lista
 
