@@ -21,45 +21,87 @@ $ npm i -S https://github.com/renanbastos93/escapejs.git
 ## Easy to use
 ```js
 // IMPORT MODULE
-const escapejs = require('escapejs');
+var escapejs = require('escapejs');
 
 
-// EASY TO USE
+/////////////////
+// STRING DATA //
+/////////////////
 
-// string data
-let strData = escapejs('<script>'); // %3Cscript%3E
+var strData = escapejs('<script>');
+console.log(strData); // %3Cscript%3E
 
-// object data
-let objData = escapejs({
-    'a': '<script>',
-    'b': [
-            'a',
-            '<script>',
-            {
-                'a': 1,
-                'b': '<script>'
-            }
-        ]
-    });
 
-// array data
-let arrData = escapejs(
+//////////////////////
+// JSON/OBJECT DATA //
+/////////////////////
+var jsonData = {
+	'a': '<script>',
+	'b': [
+		'a',
+		'<script>',
+		{
+			'a': 1,
+			'b': '<script>'
+		}
+	]
+};
+console.log(jsonData);
+/*
+{
+	'a': '%3Cscript%3E',
+	'b': [
+		'a',
+		'%3Cscript%3E',
+		{
+			'a': 1,
+			'b': '%3Cscript%3E'
+		}
+	]
+}
+*/
+
+
+////////////////
+// ARRAY DATA //
+///////////////
+var arrayData = [
+	'<script>',
 	[
-		'<script>', 
+		'asdasd',
+		'<script>',
 		[
-			'asdasd',
-			'<script>', 
+			'<asdasd>',
 			[
-				'<asdasd>', 
-				[
-					'a',
-					'<script>',
-					{
-						'a': '12',
-						'b': '<script>'
-					}
-				]
+				'a',
+				'<script>',
+				{
+					'a': '12',
+					'b': '<script>'
+				}
 			]
 		]
-	]);
+	]
+];
+console.log(arrayData);
+/*
+[
+	'%3Cscript%3E',
+	[
+		'asdasd',
+		'%3Cscript%3E',
+		[
+			'%3Cscript%3E',
+			[
+				'a',
+				'%3Cscript%3E',
+				{
+					'a': '12',
+					'b': '%3Cscript%3E'
+				}
+			]
+		]
+	]
+]
+*/
 ```
