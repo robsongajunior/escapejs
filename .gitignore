@@ -17,8 +17,8 @@ sftp-config.json
 ~*
 ._*
 *~
-src/_scss/.engine/
 
-
-# sass
 npm-debug.log
+
+*.swp
+*.swo
