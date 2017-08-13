@@ -1,39 +1,59 @@
-# EscapeJS Recursive / under development
+# EscapeJS
+
+<div style="text-align: center">
+    <img src ="./doc/escape-logo.png" />
+</div>
+
 
 ## About
-The reason to development this it module, is to help protection of the Injection Script Attack([XSS](https://www.owasp.org/index.php/Top_10_2010-A2-Cross-Site_Scripting_(XSS))) When trying injection your application, this module go protect of form recursive.
 
-### Docs
-1. [English](https://github.com/renanbastos93/escapejs/blob/master/README.md)
-2. [Português](https://github.com/renanbastos93/escapejs/blob/master/README-ptbr.md)
+EscapeJS is a easy way to escape string.
+We have a native module to escape in NodeJSm, but, it is just to strings values.
+
+EscapeJS will help you to escape string values found in arrays and object structs in a 
+recursive format.
+
 
 ## Install
+
 ```bash
 $ npm i -S https://github.com/renanbastos93/escapejs.git
 ```
 
-## Getting Start
+
+## Easy to use
 ```js
-//IMPORT ES5
 const escapejs = require('escapejs');
 
-//IMPORT ES6 - Using Destructuring Assignment
-const {escapejs, str} = require('escapejs');
-
-//USING ES5
-escapejs('<script>'); // %3Cscript%3E'
-
-//USING ES6
-escapejs('<script>'); // %3Cscript%3E
-str('<script>'); // %3Cscript%3E
+let strData = escapejs('<script>'); // %3Cscript%3E
+let objData = escapejs({
+    'a': '<script>',
+    'b': [
+            'a',
+            '<script>',
+            {
+                'a': 1,
+                'b': '<script>'
+            }
+        ]
+    }); // { a: '%3Cscript%3E', b: [ 'a', '%3Cscript%3E', { a: 1, b: '%3Cscript%3E' } ] }
+let arrData = escapejs(
+	[
+		'<script>', 
+		[
+			'asdasd',
+			'<script>', 
+			[
+				'<asdasd>', 
+				[
+					'a',
+					'<script>',
+					{
+						'a': '12',
+						'b': '<script>'
+					}
+				]
+			]
+		]
+	]); // ['%3Cscript%3E', ['asdasd', '%3Cscript%3E', ['%3Casdasd%3E', [Object]]] ]
 ```
-
-## API
-
-Method | Param Type | Returns | Raises
--------|------------|---------|-------
-str | string or unicode | Return the received string or unicode and modified with escaped strings case found | Raise ValueError case param isn't from string or unicode type
-array | list | Return the received list modified with escaped strings case found | Raise ValueError case param isn't from list type
-json | dict or json | Return the received dict modified with escaped strings case found | Raise ValueError case param isn't from dic type
-escapejs | unicode, string, list, dict, json | Return the received data escaped | Raise ValueError case param isn't from string, unicode, json, dict or list type
-
