@@ -34,9 +34,26 @@ describe('escaping json/object', function() {
 	it('send json must return json', function(){
 		var input = {
 			'a': '<script>',
-			'b': ['a', '<script>', {'a': 1, 'b': '<script>'}]
+			'b': [
+                'a',
+                '<script>',
+                {
+                    'a': 1,
+                    'b': '<script>'
+                }
+            ]
 		};
-		var output = { a: '%3Cscript%3E', b: [ 'a', '%3Cscript%3E', { a: 1, b: '%3Cscript%3E' } ] };
+		var output = {
+            'a': '%3Cscript%3E',
+            'b': [
+                'a',
+                '%3Cscript%3E',
+                {
+                    'a': 1,
+                    'b': '%3Cscript%3E'
+                }
+            ]
+        };
 
         assert.deepEqual(escapejs(input), output, 'Testing JSON');
 	});
@@ -48,17 +65,37 @@ describe('escaping array', function() {
 	it('send array must return array', function(){
 		var input = [
 			'<script>',
-			['asdasd', '<script>',
-				['<asdasd>',
-					['a', '<script>', {'a': '12', 'b': '<script>'}]
+			[
+                'asdasd',
+                '<script>',
+				[
+                    '<asdasd>',
+					[
+                        'a',
+                        '<script>',
+                        {
+                            'a': '12',
+                            'b': '<script>'
+                        }
+                    ]
 				]
 			]
 		];
 		var output =  [
 			'%3Cscript%3E',
-			['asdasd', '%3Cscript%3E',
-				['%3Cscript%3E',
-					['a', '%3Cscript%3E', {'a': '12', 'b': '%3Cscript%3E'}]
+			[
+            '   asdasd',
+                '%3Cscript%3E',
+				[
+                    '%3Cscript%3E',
+					[
+                        'a',
+                        '%3Cscript%3E',
+                        {
+                            'a': '12',
+                            'b': '%3Cscript%3E'
+                        }
+                    ]
 				]
 			]
 		];
