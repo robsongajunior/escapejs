@@ -8,13 +8,13 @@
 ## About
 
 EscapeJS is a easy way to escape strings values; Today, we have a native module to escape in NodeJS,
-but, it is just to strings values. EscapeJS will help you to find and escape string values found in arrays and object/json structs.
+but, it is just to strings values. EscapeJS will help you to find and escape string values found in arrays and object /json structs.
 
 
 ## Install
 
 ```bash
-$ npm i -S https://github.com/renanbastos93/escapejs.git
+$ npm i -S escapejs
 ```
 
 
