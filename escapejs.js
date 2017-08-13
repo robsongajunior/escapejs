@@ -1,12 +1,11 @@
 'use strict';
 
-var escapeJS = {};
 
-const type = require('./lib/typeValidation');
-const version = require('./lib/versions');
-const isString = type.isString;
-const isObject = type.isObject;
-const isArray = type.isArray; 
+var escapeJS = {};
+var type = require('./lib/typeValidation');
+var isString = type.isString;
+var isObject = type.isObject;
+var isArray = type.isArray;
 
 
 escapeJS.str = function(param) {
@@ -30,7 +29,7 @@ escapeJS.json = function(param) {
 	if(!isObject(param)) {
 		throw new Error('[ERROR] param must be from object type');
 	}
-	
+
 	var tmp;
 	var isArr;
 
@@ -40,7 +39,7 @@ escapeJS.json = function(param) {
 
 		if (param.hasOwnProperty(attr)) {
 			isArr = isArray(tmp);
-			
+
 			if(isString(tmp)) {
 				param[attr] = escapeJS.str(tmp);
 			}
@@ -61,9 +60,9 @@ escapeJS.json = function(param) {
 
 escapeJS.array = function(param) {
 	if(!param) {
-		param = [];	
+		param = [];
 	}
-	
+
 	if(!isArray(param)) {
 		throw new Error('[ERROR] param must be from array type');
 	}
@@ -87,32 +86,33 @@ escapeJS.array = function(param) {
 		if(tmp && !isArr && isObject(tmp)) {
 		    escapeJS.json(tmp);
 		}
-	}	
+	}
 
 	return param;
 };
 
 
-escapeJS.escapejs = function(param){
+escapeJS.dynamic = function(param){
 	if(!param){
 		throw new Error('[ERROR] param has no type');
 	}
-	
+
     var tmp = param;
-	
+
     if(isString(tmp)){
 		param = escapeJS.str(tmp)
 	}
-	
+
     if(isArray(tmp)){
 		escapeJS.array(tmp)
 	}
-	
+
     if(isObject(tmp)){
 		escapeJS.json(tmp);
 	}
-	
+
     return param;
 };
 
-module.exports = version(escapeJS);
+
+module.exports = escapeJS.dynamic;
