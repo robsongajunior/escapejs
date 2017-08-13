@@ -3,7 +3,7 @@
 node_modules/
 dist/
 .Trash-1000
-
+package-lock.json
 
 # IDEs metadata
 
