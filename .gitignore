@@ -3,7 +3,7 @@
 node_modules/
 dist/
 .Trash-1000
-
+package-lock.json
 
 # IDEs metadata
 
@@ -17,8 +17,8 @@ sftp-config.json
 ~*
 ._*
 *~
-src/_scss/.engine/
 
-
-# sass
 npm-debug.log
+
+*.swp
+*.swo
