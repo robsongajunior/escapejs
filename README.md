@@ -1,8 +1,8 @@
 # EscapeJS
 
-<div style="text-align: center">
-    <img src ="./doc/escape-logo.png" />
-</div>
+<p align="center">
+    <img src ="./doc/escape-logo.png" width="600px" />
+</p>
 
 
 ## About
